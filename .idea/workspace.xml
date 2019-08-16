@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f09db7b0-bb09-436b-a320-24e7c6923266" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JSL-book/JSL_1_Introduction_Facts.html" beforeDir="false" afterPath="$PROJECT_DIR$/JSL-book/JSL_1_Introduction_Facts.html" afterDir="false" />
     </list>
@@ -31,10 +30,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JSL-book/JSL_1_Introduction_Facts.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="860">
-              <caret line="932" column="76" selection-start-line="932" selection-start-column="76" selection-end-line="932" selection-end-column="76" />
+            <state relative-caret-position="423">
+              <caret line="956" column="34" lean-forward="true" selection-start-line="956" selection-start-column="34" selection-end-line="956" selection-end-column="34" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JSL-book/media/Иерархия объектов броузера .png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JSL-book/media/По ссылке или значению.png">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -102,6 +111,7 @@
     <findStrings>
       <find>indexof</find>
       <find>ins</find>
+      <find>img</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -135,7 +145,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -144,7 +154,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -167,6 +176,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -218,18 +228,18 @@
       <workItem from="1565262335597" duration="14781000" />
       <workItem from="1565639810433" duration="164000" />
       <workItem from="1565694791061" duration="6949000" />
-      <workItem from="1565772003775" duration="2269000" />
+      <workItem from="1565772003775" duration="5270000" />
+      <workItem from="1565886840801" duration="915000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49679000" />
+    <option name="totallyTimeSpent" value="53595000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26800978" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27106228" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -260,6 +270,12 @@
           <caret line="16" column="68" selection-start-line="16" selection-start-column="68" selection-end-line="16" selection-end-column="68" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JSL-book/media/Иерархия объектов броузера .png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JSL-book/media/По ссылке или значению.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/JSL-book/Class-Childclass-Example.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -304,8 +320,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/JSL-book/JSL_1_Introduction_Facts.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="860">
-          <caret line="932" column="76" selection-start-line="932" selection-start-column="76" selection-end-line="932" selection-end-column="76" />
+        <state relative-caret-position="423">
+          <caret line="956" column="34" lean-forward="true" selection-start-line="956" selection-start-column="34" selection-end-line="956" selection-end-column="34" />
         </state>
       </provider>
     </entry>
