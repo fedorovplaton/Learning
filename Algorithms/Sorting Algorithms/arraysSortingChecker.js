@@ -14,4 +14,6 @@ function arraysSortingChecker(sortFunctionName) {
     printCheck(array4,sortFunctionName);
     var array5 = [0, -1];
     printCheck(array5,sortFunctionName);
+    var array6 = [10,9,8,7,6,5,4,3,2,1,0,10,9,8,7,6,5,4,3,2,1,0];
+    printCheck(array6,sortFunctionName);
 }
