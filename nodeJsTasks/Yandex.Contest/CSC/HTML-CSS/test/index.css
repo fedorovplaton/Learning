@@ -1,0 +1,18 @@
+div div:nth-child(2n) {
+    /*color: red;*/
+}
+
+div {
+}
+
+.b2 {
+    color: yellow;
+}
+
+.red {
+    color: red;
+}
+
+html .yellow {
+    color: yellow;
+}
