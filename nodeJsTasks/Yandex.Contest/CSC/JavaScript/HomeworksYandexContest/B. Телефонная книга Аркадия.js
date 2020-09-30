@@ -15,10 +15,16 @@ const commands = [
 ]
 const commandsRegExps = {
 
+  matchCreate: RegExp(/^Создай\s/),
   matchCreateContact: RegExp(/^Создай контакт\s/),
-  matchDeleteContact: RegExp(/^Удали контакт\s/),
   matchAddProperty: RegExp(/^Добавь\s/),
-  matchDeleteProperty: RegExp(/^Удали\s/),
+  matchAddPropertyTel: RegExp(/^Добавь\s/),
+  matchAddPropertyMail: RegExp(/^Добавь\s/),
+  matchDelete: RegExp(/^Удали\s/),
+  matchDeleteContact: RegExp(/^Удали контакт\s/),
+  matchDeletePropertyTel: RegExp(/^Удали телефон\s/),
+  matchDeletePropertyMail: RegExp(/^Удали почту\s/),
+  matchDeleteContactWhere: RegExp(/^Удали контакты,\s/),
   matchShow: RegExp(/^Покажи\s/),
 
   CreateContact: RegExp(/^Создай контакт \S+$/),
@@ -26,6 +32,7 @@ const commandsRegExps = {
   AddProperty: RegExp(/^Добавь .+ для контакта \S+$/),
 
   phoneNumber: RegExp(/^\d{10}$/),
+  mail: RegExp(/^\S+$/),
 }
 
 /**
@@ -38,109 +45,425 @@ function syntaxError(lineNumber, charNumber) {
 }
 
 function PhoneBook() {
-
   this.createContact = function (contactName) {
-    console.info(`Попытка создать контакт ${contactName}`);
     if (!phoneBook.has(contactName)) {
       phoneBook.set(contactName, {tels: [], mails: []});
     }
-    return {'ok': -1};
+    return -1;
   }
-
   this.deleteContact = function (contactName) {
     phoneBook.delete(contactName);
-    return {'ok': -1};
+    return -1;
   }
+  this.addProperty = function (phones, mails, contactName) {
+    if (!phoneBook.has(contactName)) return -1;
 
-  this.addTel = function (tel, contactName) {
-    if (!phoneBook[contactName].tels.includes(tel)) {
-      phoneBook[contactName].tels.push(tel);
+    for (let i = 0; i < phones.length; i++) {
+      if (!phoneBook.get(contactName).tels.includes(phones[i])) {
+        phoneBook.get(contactName).tels.push(phones[i]);
+      }
     }
+
+    for (let i = 0; i < mails.length; i++) {
+      if (!phoneBook.get(contactName).mails.includes(mails[i])) {
+        phoneBook.get(contactName).mails.push(mails[i]);
+      }
+    }
+
+    return -1;
   }
+  this.deleteProperty = function (phones, mails, contactName) {
+    if (!phoneBook.has(contactName)) return -1;
 
-  this.addMail = function (mail, contactName) {
-    if (!phoneBook[contactName].mails.includes(mail)) {
-      phoneBook[contactName].mails.push(mail);
+    for (let i = 0; i < phones.length; i++) {
+      let phoneIndex = phoneBook.get(contactName).tels.indexOf(phones[i]);
+      if (phoneIndex !== -1) {
+        phoneBook.get(contactName).tels.splice(phoneIndex, 1);
+      }
     }
+
+    for (let i = 0; i < mails.length; i++) {
+      let mailIndex = phoneBook.get(contactName).mails.indexOf(mails[i]);
+      if (mailIndex !== -1) {
+        phoneBook.get(contactName).mails.splice(mailIndex, 1);
+      }
+    }
+
+    return -1;
   }
+  this.show = function (toShow, query) {
+    return -1;
+  }
+  this.deleteContactWhere = function (query) {
+    if (query.trim() === '') return -1;
 
-  this.add = function (argument, contactName) {
-    if (!phoneBook.has(contactName)) return;
+    for (let contact of phoneBook.keys()) {
+      if (contact.indexOf(query) !== -1) {
+        phoneBook.delete(contact);
+        continue;
+      }
+      for (let i = 0; i < phoneBook.get(contact).tels.length; i++) {
+        if (phoneBook.get(contact).tels[i].indexOf(query) !== -1) {
+          phoneBook.delete(contact);
+        }
+      }
 
-    let parseArgument = argument.split('и').map(item => item.trim());
+      if (!phoneBook.has(contact)) continue;
 
-    for (let i = 0; i < parseArgument.length; i++) {
-
+      for (let i = 0; i < phoneBook.get(contact).mails.length; i++) {
+        if (phoneBook.get(contact).mails[i].indexOf(query) !== -1) {
+          phoneBook.delete(contact);
+        }
+      }
     }
-    //if (!phoneBook[contactName].)
+
+    return -1;
+  }
+  this.break = function () {
+    this.createContact = function () {return -1;};
+    this.deleteContact = function () {return -1;};
+    this.addProperty = function () {return -1;};
+    this.deleteProperty = function () {return -1;};
+    this.show = function () {return -1;};
+    this.deleteContactWhere = function () {return -1;};
   }
 }
 
 function Parser() {
+  //Создай контакт  Платон
   this.createContact = function (command) {
     let splitCommand = command.split(' ');
     if (commandsRegExps.CreateContact.test(command)) {
       return phoneBookInstance.createContact(splitCommand[2]);
-    }
-    else {
+    } else {
       if (splitCommand.length > 3)
-        return {'error': (16 + splitCommand[2].length)};
-      if (splitCommand[2] === '')
-        return {'error': 16};
+        return (16 + splitCommand[2].length);
+      if (splitCommand[2] === '' || splitCommand.length === 2)
+        return 16;
     }
   }
   this.deleteContact = function (command) {
     let splitCommand = command.split(' ');
     if (commandsRegExps.DeleteContact.test(command)) {
       return phoneBookInstance.deleteContact(splitCommand[2]);
-    }
-    else {
+    } else {
       if (splitCommand.length > 3)
-        return {'error': (16 + splitCommand[2].length)};
+        return (15 + splitCommand[2].length);
       if (splitCommand[2] === '')
-        return {'error': 16};
+        return 15;
     }
   }
   this.addProperty = function (command) {
-    if(commandsRegExps.AddProperty.test(command)) {
-      let toAdd = {tels:[],mails:[]};
-      // Добавь * * для контакта *;
-      let splitCommand = command.split(' ');
-      let i = 1;
-      while (splitCommand[i] !== 'для') {
-        if (splitCommand[i] === 'телефон'){
-          if(commandsRegExps.phoneNumber.test(splitCommand[i + 1])){
-            toAdd.tels.push(splitCommand[i + 1]);
-            i++;
-          }
+    let words = command.split(' ');
+    // Добавь телефон 5556667788 и телефон 5556667787 и почту grisha@example.com для контакта Григорий
+    let i = 1;
+    let errorIndex = words[0].length + 2;
+    let afterUnion = true;
+    let phones = [];
+    let mails = [];
+    let contactName;
 
-        }
-        i++;
+    while (i < words.length && words[i] !== 'для') {
+      if (words[i] === '') {
+        return errorIndex;
       }
+      if (words[i] === 'и') {
+        if (!afterUnion) {
+          afterUnion = true;
+          errorIndex += 2;
+          i++;
+          continue;
+        } else {
+          return errorIndex;
+        }
+      }
+
+      if ((words[i] === 'телефон' || words[i] === 'почту') && !afterUnion) return errorIndex;
+      let j = i + 1;
+
+      //console.log(`i: ${i}, words[i]: ${words[i]}, words.length: ${words.length}, command: \'${command}\', command.length: ${command.length}`)
+      if (words[i] === 'телефон') {
+        errorIndex += 8;
+
+        if (words.length === j) return errorIndex - 1;
+        if (words[j] === '') return errorIndex;
+        if (!commandsRegExps.phoneNumber.test(words[j])) return errorIndex;
+
+        phones.push(words[j]);
+        errorIndex += 11;
+        afterUnion = false;
+        i = j + 1;
+        continue;
+      }
+
+      if (words[i] === 'почту') {
+        errorIndex += 6;
+
+        if (words.length === j) return errorIndex - 1;
+        if (words[j] === '') return errorIndex;
+        if (!commandsRegExps.mail.test(words[j])) return errorIndex;
+
+        mails.push(words[j]);
+        errorIndex += (words[j].length + 1);
+        afterUnion = false;
+        i = j + 1;
+        continue;
+      }
+      return errorIndex;
+    }
+
+    if (i === words.length) return command.length + 1;
+    if (words[i] !== 'для' || afterUnion) return errorIndex;
+    if (i + 1 === words.length) return command.length + 1;
+
+    errorIndex += 4;
+    i++;
+
+    if (i === words.length) return command.length;
+    if (words[i] !== 'контакта') return errorIndex;
+    if (i + 1 === words.length) return command.length + 1;
+
+    errorIndex += 9;
+    i++;
+
+    if (i === words.length) return command.length;
+    if (words[i] === '') return errorIndex;
+
+    contactName = words[i];
+    i++;
+
+    if (i !== words.length) return (errorIndex + words[i - 1].length);
+
+    return phoneBookInstance.addProperty(phones, mails, contactName);
+  }
+  this.deleteProperty = function (command) {
+    let words = command.split(' ');
+    // Добавь телефон 5556667788 и телефон 5556667787 и почту grisha@example.com для контакта Григорий
+    let i = 1;
+    let errorIndex = words[0].length + 2;
+    let afterUnion = true;
+    let phones = [];
+    let mails = [];
+    let contactName;
+
+    while (i < words.length && words[i] !== 'для') {
+      if (words[i] === '') {
+        return errorIndex;
+      }
+      if (words[i] === 'и') {
+        if (!afterUnion) {
+          afterUnion = true;
+          errorIndex += 2;
+          i++;
+          continue;
+        } else {
+          return errorIndex;
+        }
+      }
+
+      if ((words[i] === 'телефон' || words[i] === 'почту') && !afterUnion) return errorIndex;
+      let j = i + 1;
+
+      //console.log(`i: ${i}, words[i]: ${words[i]}, words.length: ${words.length}, command: \'${command}\', command.length: ${command.length}`)
+      if (words[i] === 'телефон') {
+        errorIndex += 8;
+
+        if (words.length === j) return errorIndex - 1;
+        if (words[j] === '') return errorIndex;
+        if (!commandsRegExps.phoneNumber.test(words[j])) return errorIndex;
+
+        phones.push(words[j]);
+        errorIndex += 11;
+        afterUnion = false;
+        i = j + 1;
+        continue;
+      }
+
+      if (words[i] === 'почту') {
+        errorIndex += 6;
+
+        if (words.length === j) return errorIndex - 1;
+        if (words[j] === '') return errorIndex;
+        if (!commandsRegExps.mail.test(words[j])) return errorIndex;
+
+        mails.push(words[j]);
+        errorIndex += (words[j].length + 1);
+        afterUnion = false;
+        i = j + 1;
+        continue;
+      }
+      return errorIndex;
+    }
+
+    if (i === words.length) return command.length + 1;
+    if (words[i] !== 'для' || afterUnion) return errorIndex;
+    if (i + 1 === words.length) return command.length + 1;
+
+    errorIndex += 4;
+    i++;
+
+    if (i === words.length) return command.length;
+    if (words[i] !== 'контакта') return errorIndex;
+    if (i + 1 === words.length) return command.length + 1;
+
+    errorIndex += 9;
+    i++;
+
+    if (i === words.length) return command.length;
+    if (words[i] === '') return errorIndex;
+
+    contactName = words[i];
+    i++;
+
+    if (i !== words.length) return (errorIndex + words[i - 1].length);
+
+    return phoneBookInstance.deleteProperty(phones, mails, contactName);
+  }
+  this.show = function (command) {
+    // Покажи почты и телефоны для контактов, где есть <запрос>
+    // Покажи *
+    let errorIndex = 8;
+    let words = command.split(' ');
+    let afterUnion = true;
+    let query = '';
+    let toShow = [];
+
+    for (let i = 1; i < words.length; i++) {
+      //console.log(command + ': ' + command[errorIndex - 1] + ' : ' + words[i]);
+      if (words[i] === '') return errorIndex;
+      if ((words[i] === 'почты' || words[i] === 'имя' || words[i] === 'телефоны') && afterUnion) {
+        toShow.push(words[i]);
+        afterUnion = false;
+        errorIndex += words[i].length + 1;
+        if (i + 1 === words.length) return errorIndex - 1;
+        continue;
+      }
+      if (words[i] === 'и') {
+        if (afterUnion) return errorIndex;
+        else {
+          afterUnion = true;
+          errorIndex += 2;
+          if (i + 1 === words.length) return errorIndex - 1;
+        }
+        continue;
+      }
+      if (words[i] === 'для') {
+        if (afterUnion) return errorIndex;
+        errorIndex += 4;
+        i++;
+        if (i !== words.length) {
+          //console.log(command[errorIndex]);
+          if (words[i] === 'контактов,') {
+            errorIndex += 11
+            i++;
+            if (i !== words.length) {
+              //console.log(command[errorIndex]);
+              if (words[i] === 'где') {
+                errorIndex += 4
+                i++;
+                if (i !== words.length) {
+                  //console.log(command[errorIndex]);
+                  if (words[i] === 'есть') {
+                    errorIndex += 5
+                    i++;
+                    if (i !== words.length) {
+                      //console.log(command[errorIndex]);
+                      query = command.slice(errorIndex - 1, command.length);
+                      return phoneBookInstance.show(toShow, query);
+                    }
+                    return errorIndex - 1;
+                  }
+                  return errorIndex;
+                }
+                return errorIndex - 1;
+              }
+              return errorIndex;
+            }
+            return errorIndex - 1;
+          }
+          return errorIndex;
+        }
+        return errorIndex - 1;
+      }
+      return errorIndex;
     }
   }
-  this.deleteProperty = function () {}
-  this.show = function () {}
+  this.deleteContactWhere = function (command) {
+    // Удали контакты, где есть <запрос>
+    // Удали контакты, *
+    let errorIndex = 17;
+    let words = command.split(' ');
+    let query = '';
+    let i = 2;
+
+    //console.log(command[errorIndex]);
+    if (words[i] === 'где') {
+      //console.log('i: ' + i + ', words[i]: ' + words[i] + ',' )
+      errorIndex += 4
+      i++;
+      if (i !== words.length) {
+        //console.log(command[errorIndex]);
+        if (words[i] === 'есть') {
+          errorIndex += 5
+          i++;
+          if (i !== words.length) {
+            //console.log(command[errorIndex]);
+            query = command.slice(errorIndex - 1, command.length);
+            return phoneBookInstance.deleteContactWhere(query);
+          }
+          return errorIndex - 1;
+        }
+        return errorIndex;
+      }
+      return errorIndex - 1;
+    }
+    return errorIndex;
+
+  }
+
 }
 
 function doCommand(command) {
+  if (command === 'Добавь') return 7;
+  if (command === 'Создай') return 7;
+  if (command === 'Удали') return 6;
+  if (command === 'Покажи') return 7;
 
-  if (commandsRegExps.matchCreateContact.test(command))
-    return parser.createContact(command);
+  // Создай контакт
+  if (commandsRegExps.matchCreate.test(command)) {
+    // Создай *
+    if (commandsRegExps.matchCreateContact.test(command))
+      // Создай контакт *
+      return parser.createContact(command);
+    if (command === 'Создай контакт')
+      return 15;
+    return 8;
+  }
 
-  if (commandsRegExps.matchDeleteContact.test(command))
-    return parser.deleteContact(command);
+  if (commandsRegExps.matchDelete.test(command)) {
+    if (commandsRegExps.matchDeleteContact.test(command))
+      return parser.deleteContact(command);
+    if (commandsRegExps.matchDeletePropertyTel.test(command))
+      return parser.deleteProperty(command);
+    if (commandsRegExps.matchDeletePropertyMail.test(command))
+      return parser.deleteProperty(command);
+    if (commandsRegExps.matchDeleteContactWhere.test(command))
+      return parser.deleteContactWhere(command);
+    if (command === 'Удали контакты,')
+      return 16;
+    if (command === 'Удали контакт')
+      return 14;
+    return 7;
+  }
 
-  if (commandsRegExps.matchAddProperty.test(command))
+  if (commandsRegExps.matchAddProperty.test(command)) {
     return parser.addProperty(command);
-
-  if (commandsRegExps.matchDeleteProperty.test(command))
-    return parser.deleteProperty(command);
+  }
 
   if (commandsRegExps.matchShow.test(command))
     return parser.show(command);
 
-  return {'error': 1};
+  return 1;
 }
 
 /**
@@ -151,13 +474,39 @@ function doCommand(command) {
 function run(query) {
   let commands = query.split(';');
   let queryResponse = [];
+  let errorIndex = 0;
 
   for (let commandIndex = 0; commandIndex < commands.length; commandIndex++) {
-    let command = commands[commandIndex];
 
-    let commandResponse = doCommand(command);
+    if (commandIndex === commands.length - 1 && commands[commands.length - 1] === '')
+      break;
+
+    if (commands[commands.length - 1] !== '') {
+      if (commandIndex === commands.length - 1) {
+        phoneBookInstance.break();
+      }
+    }
+
+    let command = commands[commandIndex];
+    let response = doCommand(command);
+
+    if (commands[commands.length - 1] !== '') {
+      if (commandIndex === commands.length - 1) {
+        if (response === -1) response = commands[commandIndex].length + 1;
+      }
+    }
+
+    //if (response !== -1) console.log('ERROR: ' + command + ', errorIndex: ' + (errorIndex + response));
+    queryResponse.push(response);
+    errorIndex += command.length;
   }
   return queryResponse;
 }
 
-module.exports = {phoneBook, run, testCommandName};
+// ddf dfdf fdf;fdfdfdf dfdf;fdfd;
+// post       => ['post']
+// post;      => ['post', '']
+// post;post  => ['post','post']
+// post;post; => ['post', 'post', '']
+
+module.exports = {phoneBook, run};
