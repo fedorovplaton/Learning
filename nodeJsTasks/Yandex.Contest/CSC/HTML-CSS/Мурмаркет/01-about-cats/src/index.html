@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Мурмаркет</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <h1>Мурмаркет</h1>
+      </div>
+    </header>
+    <hr>
+    <section class="gallery">
+      <div class="gallery__wrapper">
+        <input class="slide-switcher" type="radio" name="slide" id="slide-0" checked>
+        <input class="slide-switcher" type="radio" name="slide" id="slide-1">
+        <input class="slide-switcher" type="radio" name="slide" id="slide-2">
+        <input class="slide-switcher" type="radio" name="slide" id="slide-3">
+        <input class="slide-switcher" type="radio" name="slide" id="slide-4">
+        <input class="slide-switcher" type="radio" name="slide" id="slide-5">
+
+        <div class="slide-list"><label for="slide-0" class="slide" >
+            <picture class="slide__picture">
+              <img src="images/cat-7.jpg" alt="кот Хэппи">
+            </picture>
+            <label class="active-slide" for="modal-0">
+              <picture class="slide__picture">
+                <img src="images/cat-7.jpg" alt="кот Хэппи">
+              </picture>
+              <span class="slide__name">Имя 1</span>
+            </label>
+          </label><label for="slide-1" class="slide">
+            <picture class="slide__picture">
+              <img src="images/cat-1.jpg" alt="кот Хэппи">
+            </picture>
+            <label class="active-slide" for="modal-1">
+              <picture class="slide__picture">
+                <img src="images/cat-1.jpg" alt="кот Хэппи">
+              </picture>
+              <span class="slide__name">Имя 2</span>
+            </label>
+          </label><label for="slide-2" class="slide">
+            <picture class="slide__picture">
+              <img src="images/cat-2.jpg" alt="кот Хэппи">
+            </picture>
+            <label class="active-slide" for="modal-2">
+              <picture class="slide__picture">
+                <img src="images/cat-2.jpg" alt="кот Хэппи">
+              </picture>
+              <span class="slide__name">Имя 3</span>
+            </label>
+          </label><label for="slide-3" class="slide">
+            <picture class="slide__picture">
+              <img src="images/cat-3.jpg" alt="кот Хэппи">
+            </picture>
+            <label class="active-slide" for="modal-3">
+              <picture class="slide__picture">
+                <img src="images/cat-3.jpg" alt="кот Хэппи">
+              </picture>
+              <span class="slide__name">Имя 4</span>
+            </label>
+          </label><label for="slide-4" class="slide">
+            <picture class="slide__picture">
+              <img src="images/cat-4.jpg" alt="кот Хэппи">
+            </picture>
+            <label class="active-slide" for="modal-4">
+              <picture class="slide__picture">
+                <img src="images/cat-4.jpg" alt="кот Хэппи">
+              </picture>
+              <span class="slide__name">Имя 5</span>
+            </label>
+          </label><label for="slide-5" class="slide">
+            <picture class="slide__picture">
+              <img src="images/cat-5.jpg" alt="кот Хэппи">
+            </picture>
+            <label class="active-slide" for="modal-5">
+              <picture class="slide__picture">
+                <img src="images/cat-5.jpg" alt="кот Хэппи">
+              </picture>
+              <span class="slide__name">Имя 6</span>
+            </label>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <input class="modal-switcher" type="radio" name="modal" id="modal-0">
+    <input class="modal-switcher" type="radio" name="modal" id="modal-1">
+    <input class="modal-switcher" type="radio" name="modal" id="modal-2">
+    <input class="modal-switcher" type="radio" name="modal" id="modal-3">
+    <input class="modal-switcher" type="radio" name="modal" id="modal-4">
+    <input class="modal-switcher" type="radio" name="modal" id="modal-5">
+    <input class="close-modal" type="radio" name="modal" id="close-modal" checked>
+
+    <section class="modal">
+      <div class="modal__item" id="modal_item_0">
+        <picture class="modal__picture">
+          <img src="images/cat-7.jpg" alt="кот Хэппи">
+        </picture>
+        <div class="modal__text">
+          <h3 class="name text">Хэппи</h3>
+          <p class="text">Дружелюбный</p>
+          <p class="text">Возраст: 6 годиков</p>
+          <p class="text">
+            Большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+          </p>
+        </div>
+        <label for="close-modal" class="cross"></label>
+      </div>
+      <div class="modal__item" id="modal_item_1">
+        <picture class="modal__picture">
+          <img src="images/cat-1.jpg" alt="кот Хэппи">
+        </picture>
+        <div class="modal__text">
+          <h3 class="name text">Хэппи</h3>
+          <p class="text">Дружелюбный</p>
+          <p class="text">Возраст: 6 годиков</p>
+          <p class="text">
+            Большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+          </p>
+        </div>
+        <label for="close-modal" class="cross"></label>
+      </div>
+      <div class="modal__item" id="modal_item_2">
+        <picture class="modal__picture">
+          <img src="images/cat-2.jpg" alt="кот Хэппи">
+        </picture>
+        <div class="modal__text">
+          <h3 class="name text">Хэппи</h3>
+          <p class="text">Дружелюбный</p>
+          <p class="text">Возраст: 6 годиков</p>
+          <p class="text">
+            Большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+          </p>
+        </div>
+        <label for="close-modal" class="cross"></label>
+      </div>
+      <div class="modal__item" id="modal_item_3">
+        <picture class="modal__picture">
+          <img src="images/cat-3.jpg" alt="кот Хэппи">
+        </picture>
+        <div class="modal__text">
+          <h3 class="name text">Хэппи</h3>
+          <p class="text">Дружелюбный</p>
+          <p class="text">Возраст: 6 годиков</p>
+          <p class="text">
+            Большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+          </p>
+        </div>
+        <label for="close-modal" class="cross"></label>
+      </div>
+      <div class="modal__item" id="modal_item_4">
+        <picture class="modal__picture">
+          <img src="images/cat-4.jpg" alt="кот Хэппи">
+        </picture>
+        <div class="modal__text">
+          <h3 class="name text">Хэппи</h3>
+          <p class="text">Дружелюбный</p>
+          <p class="text">Возраст: 6 годиков</p>
+          <p class="text">
+            Большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+          </p>
+        </div>
+        <label for="close-modal" class="cross"></label>
+      </div>
+      <div class="modal__item" id="modal_item_5">
+        <picture class="modal__picture">
+          <img src="images/cat-5.jpg" alt="кот Хэппи">
+        </picture>
+        <div class="modal__text">
+          <h3 class="name text">Хэппи 5 </h3>
+          <p class="text">Дружелюбный</p>
+          <p class="text">Возраст: 6 годиков</p>
+          <p class="text">
+            Большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+            большое описание большое описание большое описание большое описание большое описание
+            большое
+            описание
+          </p>
+        </div>
+        <label for="close-modal" class="cross"></label>
+      </div>
+    </section>
+    <hr>
+    <footer>
+      <div class="footer-left">
+        <p class="contact-us">Напишите нам</p>
+        <a href="mailto:yandex.ru">cats@sample.sample</a>
+        <a href="mailto:yandex.ru">vnuchek@sample.sample</a>
+      </div>
+      <div class="footer-right">
+        <p> 2020 ООО <a href="#">Бабушкины котята</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

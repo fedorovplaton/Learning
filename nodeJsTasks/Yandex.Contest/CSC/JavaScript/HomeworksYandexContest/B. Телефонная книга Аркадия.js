@@ -27,7 +27,7 @@ const commandsRegExps = {
   matchDeleteContactWhere: RegExp(/^Удали контакты,\s/),
   matchShow: RegExp(/^Покажи\s/),
 
-  CreateContact: RegExp(/^Создай контакт \S+$/),
+  CreateContact: RegExp(/^Создай контакт .+$/),
   DeleteContact: RegExp(/^Удали контакт \S+$/),
   AddProperty: RegExp(/^Добавь .+ для контакта \S+$/),
 
@@ -52,7 +52,9 @@ function PhoneBook() {
     return -1;
   }
   this.deleteContact = function (contactName) {
-    phoneBook.delete(contactName);
+    if (phoneBook.has(contactName)) {
+      phoneBook.delete(contactName);
+    }
     return -1;
   }
   this.addProperty = function (phones, mails, contactName) {
@@ -91,13 +93,74 @@ function PhoneBook() {
 
     return -1;
   }
+  this.structPhone = function (phone) {
+    let s = '+7 (' +
+        phone.slice(0, 3) +
+        ') ' +
+        phone.slice(3, 6) +
+        '-' +
+        phone.slice(6, 8) +
+        '-' +
+        phone.slice(8, 10);
+    return s;
+  }
+  this.showContact = function (toShow, contactName) {
+    let str = '';
+    for (let i = 0; i < toShow.length; i++) {
+      if (str !== '') str += ';';
+      if (toShow[i] === 'имя') {
+        str += contactName;
+      }
+      if (toShow[i] === 'почты') {
+        str += phoneBook.get(contactName).mails.join(',');
+      }
+      if (toShow[i] === 'телефоны') {
+        str += phoneBook.get(contactName).tels.map(item => this.structPhone(item)).join(',');
+      }
+    }
+    return str;
+  }
   this.show = function (toShow, query) {
-    return -1;
+    // почты, имя, телефоны
+    if (query === '')
+      return [];
+    let answer = [];
+    for (let contact of phoneBook.keys()) {
+
+      if (contact.indexOf(query) !== -1) {
+        answer.push(this.showContact(toShow, contact));
+        continue;
+      }
+
+      let flag = false;
+
+      for (let i = 0; i < phoneBook.get(contact).tels.length; i++) {
+        if (phoneBook.get(contact).tels[i].indexOf(query) !== -1) {
+          answer.push(this.showContact(toShow, contact));
+          flag = true;
+          break;
+        }
+      }
+
+      if (flag) continue;
+
+      for (let i = 0; i < phoneBook.get(contact).mails.length; i++) {
+        if (phoneBook.get(contact).mails[i].indexOf(query) !== -1) {
+          answer.push(this.showContact(toShow, contact));
+          break;
+        }
+      }
+    }
+
+
+    return answer;
+
   }
   this.deleteContactWhere = function (query) {
-    if (query.trim() === '') return -1;
+    if (query === '') return -1;
 
     for (let contact of phoneBook.keys()) {
+      //console.log(contact);
       if (contact.indexOf(query) !== -1) {
         phoneBook.delete(contact);
         continue;
@@ -105,6 +168,7 @@ function PhoneBook() {
       for (let i = 0; i < phoneBook.get(contact).tels.length; i++) {
         if (phoneBook.get(contact).tels[i].indexOf(query) !== -1) {
           phoneBook.delete(contact);
+          break;
         }
       }
 
@@ -113,6 +177,7 @@ function PhoneBook() {
       for (let i = 0; i < phoneBook.get(contact).mails.length; i++) {
         if (phoneBook.get(contact).mails[i].indexOf(query) !== -1) {
           phoneBook.delete(contact);
+          break;
         }
       }
     }
@@ -120,38 +185,47 @@ function PhoneBook() {
     return -1;
   }
   this.break = function () {
-    this.createContact = function () {return -1;};
-    this.deleteContact = function () {return -1;};
-    this.addProperty = function () {return -1;};
-    this.deleteProperty = function () {return -1;};
-    this.show = function () {return -1;};
-    this.deleteContactWhere = function () {return -1;};
+    this.createContact = function () {
+      return -1;
+    };
+    this.deleteContact = function () {
+      return -1;
+    };
+    this.addProperty = function () {
+      return -1;
+    };
+    this.deleteProperty = function () {
+      return -1;
+    };
+    this.show = function () {
+      return -1;
+    };
+    this.deleteContactWhere = function () {
+      return -1;
+    };
   }
 }
 
 function Parser() {
-  //Создай контакт  Платон
   this.createContact = function (command) {
-    let splitCommand = command.split(' ');
-    if (commandsRegExps.CreateContact.test(command)) {
-      return phoneBookInstance.createContact(splitCommand[2]);
-    } else {
-      if (splitCommand.length > 3)
-        return (16 + splitCommand[2].length);
-      if (splitCommand[2] === '' || splitCommand.length === 2)
-        return 16;
+    if (command.length > 15) {
+      return phoneBookInstance.createContact(command.slice(15, command.length));
     }
+    if (command.length === 15) {
+      return -1;
+    }
+    return 16;
   }
   this.deleteContact = function (command) {
     let splitCommand = command.split(' ');
-    if (commandsRegExps.DeleteContact.test(command)) {
-      return phoneBookInstance.deleteContact(splitCommand[2]);
-    } else {
-      if (splitCommand.length > 3)
-        return (15 + splitCommand[2].length);
-      if (splitCommand[2] === '')
-        return 15;
+    if (command.length > 14) {
+      return phoneBookInstance.deleteContact(command.slice(14, command.length));
     }
+    if (command.length === 14) {
+      return -1;
+    }
+    return 15;
+
   }
   this.addProperty = function (command) {
     let words = command.split(' ');
@@ -229,12 +303,16 @@ function Parser() {
     if (i === words.length) return command.length;
     if (words[i] === '') return errorIndex;
 
-    contactName = words[i];
+    //contactName = words[i];
+    return phoneBookInstance.addProperty(phones, mails, command.slice(errorIndex - 1, command.length));
+    //console.log(command.slice(errorIndex - 1, command.length));
+    /*
     i++;
 
     if (i !== words.length) return (errorIndex + words[i - 1].length);
 
     return phoneBookInstance.addProperty(phones, mails, contactName);
+     */
   }
   this.deleteProperty = function (command) {
     let words = command.split(' ');
@@ -312,12 +390,16 @@ function Parser() {
     if (i === words.length) return command.length;
     if (words[i] === '') return errorIndex;
 
+    return phoneBookInstance.deleteProperty(phones, mails, command.slice(errorIndex - 1, command.length));
+    /*
     contactName = words[i];
     i++;
 
     if (i !== words.length) return (errorIndex + words[i - 1].length);
 
     return phoneBookInstance.deleteProperty(phones, mails, contactName);
+
+     */
   }
   this.show = function (command) {
     // Покажи почты и телефоны для контактов, где есть <запрос>
@@ -402,7 +484,7 @@ function Parser() {
       errorIndex += 4
       i++;
       if (i !== words.length) {
-        //console.log(command[errorIndex]);
+
         if (words[i] === 'есть') {
           errorIndex += 5
           i++;
@@ -433,7 +515,7 @@ function doCommand(command) {
   if (commandsRegExps.matchCreate.test(command)) {
     // Создай *
     if (commandsRegExps.matchCreateContact.test(command))
-      // Создай контакт *
+        // Создай контакт *
       return parser.createContact(command);
     if (command === 'Создай контакт')
       return 15;
@@ -475,6 +557,7 @@ function run(query) {
   let commands = query.split(';');
   let queryResponse = [];
   let errorIndex = 0;
+  let array = []
 
   for (let commandIndex = 0; commandIndex < commands.length; commandIndex++) {
 
@@ -492,21 +575,21 @@ function run(query) {
 
     if (commands[commands.length - 1] !== '') {
       if (commandIndex === commands.length - 1) {
-        if (response === -1) response = commands[commandIndex].length + 1;
+        if (response === -1 || Array.isArray(response))
+          response = commands[commandIndex].length + 1;
       }
     }
 
-    //if (response !== -1) console.log('ERROR: ' + command + ', errorIndex: ' + (errorIndex + response));
+    if (response !== -1 && !Array.isArray(response)) {
+      //console.log('ERROR: ' + command + ', errorIndex: ' + (errorIndex + response));
+      syntaxError(commandIndex + 1, response);
+    }
+    if (Array.isArray(response)) array = array.concat(response);
     queryResponse.push(response);
     errorIndex += command.length;
   }
+  //return array;
   return queryResponse;
 }
-
-// ddf dfdf fdf;fdfdfdf dfdf;fdfd;
-// post       => ['post']
-// post;      => ['post', '']
-// post;post  => ['post','post']
-// post;post; => ['post', 'post', '']
 
 module.exports = {phoneBook, run};
