@@ -1,3 +1,16 @@
+function getState(students) {
+    return Object.keys(students)
+        .map(name => [
+            name,
+            '(',
+            students[name].focus,
+            ',',
+            students[name].wisdom,
+            ')'
+        ].join(''))
+        .join('; ');
+}
+
 /**
  * Возвращает новый emitter
  * @returns {Object}
@@ -24,8 +37,10 @@ function getEmitter() {
          * @param {String} event
          * @param {Object} context
          * @param {Function} handler
+         * @param {Number} value
+         * @param {String} eventType
          */
-        on: function (event, context, handler) {
+        on: function (event, context, handler, ...[value= -1, eventType= ' ']) {
             let namespaces = event.split('.');
 
             let index = this.events._contexts.indexOf(context);
@@ -49,8 +64,13 @@ function getEmitter() {
                 if (i === namespaces.length - 1) {
                     node._actions.push({
                         index: index,
-                        handler: handler
+                        value: value,
+                        handler: handler,
+                        eventType: eventType
                     })
+                    if (eventType[0] === 't') {
+                        node._actions[node._actions.length - 1].value = 1;
+                    }
                 }
             }
             return this;
@@ -67,7 +87,7 @@ function getEmitter() {
 
             for (let i = 0; i < namespaces.length; i++) {
                 if (!node.hasOwnProperty(namespaces[i])) {
-                    break;
+                    return this;
                 }
                 node = node[namespaces[i]];
             }
@@ -113,7 +133,28 @@ function getEmitter() {
             while (node._parent !== null) {
                 for (let i = 0; i < node._actions.length; i++) {
                     let action = node._actions[i];
-                    action.handler.apply(this.events._contexts[action.index]);
+                    switch (action.eventType[0]) {
+                        case ' ':
+                            action.handler.apply(this.events._contexts[action.index]);
+                            break;
+                        case 's': // several
+                            if (action.value === 0) {
+                                node._actions.splice(i, 1);
+                                i -= 1;
+                                break;
+                            }
+                            action.handler.apply(this.events._contexts[action.index]);
+                            action.value -= 1;
+                            break;
+                        case 't':
+                            action.value -= 1;
+                            if (action.value > 0) {
+                                break;
+                            }
+                            action.handler.apply(this.events._contexts[action.index]);
+                            action.value = parseInt(action.eventType.split(':')[1]);
+                            break;
+                    }
                 }
                 node = node._parent;
             }
@@ -133,7 +174,7 @@ function getEmitter() {
             if (times <= 0) {
                 return this.on(event, context, handler);
             }
-            return this;
+            return this.on(event, context, handler, times, 'several');
         },
 
         /**
@@ -148,7 +189,7 @@ function getEmitter() {
             if (frequency <= 0) {
                 return this.on(event, context, handler);
             }
-            return this;
+            return this.on(event, context, handler, frequency, ('through:' + frequency));
         }
     };
 }

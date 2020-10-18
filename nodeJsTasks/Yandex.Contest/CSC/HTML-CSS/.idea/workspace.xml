@@ -20,39 +20,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26853392-99bb-4164-8f89-52aace88ef8e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/HTML-CSS.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/.linthtmlrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/.npmrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/.prettierignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/.prettierrc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/.stylelintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/murmarket-fp.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/images/cat-9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/svgs/bullet-form.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Мурмаркет/01-about-cats/src/svgs/split.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../JavaScript/HomeworksYandexContest/C-test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../JavaScript/HomeworksYandexContest/C. 0b11 друзей Аркадия.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaScript/HomeworksYandexContest/B-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaScript/HomeworksYandexContest/B-test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JavaScript/HomeworksYandexContest/B. Телефонная книга Аркадия.js" beforeDir="false" afterPath="$PROJECT_DIR$/../JavaScript/HomeworksYandexContest/B. Телефонная книга Аркадия.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/.linthtmlrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/.npmrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/.prettierignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/.prettierrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/.stylelintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/cats_for_all.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/images/cat-9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Котики для всех/01-about-cats/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +71,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Мурмаркет/01-about-cats/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Котики для всех/01-about-cats/src" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.stylelint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -88,7 +79,7 @@
     <property name="node.js.path.for.package.stylelint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/Про котиков/01-about-cats 2/node_modules/stylelint" />
+    <property name="node.js.selected.package.stylelint" value="$PROJECT_DIR$/Котики для всех/01-about-cats/node_modules/stylelint" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
@@ -96,6 +87,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Котики для всех/01-about-cats/src" />
       <recent name="$PROJECT_DIR$/Мурмаркет/01-about-cats/src" />
     </key>
   </component>
@@ -114,6 +106,12 @@
       <option name="presentableId" value="Default" />
       <updated>1602243594039</updated>
       <workItem from="1602243595442" duration="20421000" />
+      <workItem from="1602682342632" duration="694000" />
+      <workItem from="1602691026616" duration="3342000" />
+      <workItem from="1602773454680" duration="937000" />
+      <workItem from="1602781055534" duration="11438000" />
+      <workItem from="1602830265501" duration="10044000" />
+      <workItem from="1602952602624" duration="16000" />
     </task>
     <servers />
   </component>
@@ -130,39 +128,41 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="132" y="346" key="#Stylelint" timestamp="1602252952975">
+    <state x="132" y="346" key="#Stylelint" timestamp="1602693223930">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="132" y="346" key="#Stylelint/0.0.1440.900@0.0.1440.900" timestamp="1602252952975" />
-    <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1602280609249">
+    <state x="132" y="346" key="#Stylelint/0.0.1440.900@0.0.1440.900" timestamp="1602693223930" />
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom" timestamp="1602688081130">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602280609249" />
-    <state width="1419" height="245" key="GridCell.Tab.0.center" timestamp="1602280609248">
+    <state width="1419" height="245" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1602688081130" />
+    <state width="1419" height="245" key="GridCell.Tab.0.center" timestamp="1602688081129">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1602280609248" />
-    <state width="1419" height="245" key="GridCell.Tab.0.left" timestamp="1602280609247">
+    <state width="1419" height="245" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1602688081129" />
+    <state width="1419" height="245" key="GridCell.Tab.0.left" timestamp="1602688081128">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1602280609247" />
-    <state width="1419" height="245" key="GridCell.Tab.0.right" timestamp="1602280609248">
+    <state width="1419" height="245" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1602688081128" />
+    <state width="1419" height="245" key="GridCell.Tab.0.right" timestamp="1602688081130">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1602280609248" />
+    <state width="1419" height="245" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1602688081130" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1602244081574">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1602244081574" />
-    <state x="385" y="210" width="670" height="675" key="run.anything.popup" timestamp="1602276889539">
-      <screen x="0" y="0" width="1440" height="900" />
+    <state x="385" y="210" width="670" height="675" key="run.anything.popup" timestamp="1602841904900">
+      <screen x="0" y="23" width="1440" height="797" />
     </state>
-    <state x="385" y="210" width="670" height="675" key="run.anything.popup/0.0.1440.900@0.0.1440.900" timestamp="1602276889539" />
+    <state x="385" y="210" width="670" height="675" key="run.anything.popup/0.0.1440.900@0.0.1440.900" timestamp="1602839080989" />
+    <state x="385" y="210" width="670" height="675" key="run.anything.popup/0.23.1440.797@0.23.1440.797" timestamp="1602841904900" />
     <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1602273480717">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
